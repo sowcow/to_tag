@@ -1,5 +1,4 @@
 require 'rack'
-require 'rack/static'
 
 module ToTag
   class Viewer
@@ -8,8 +7,8 @@ module ToTag
       port = params.fetch :port
 
       app = Rack::Builder.new do
-        use Rack::Static root: dir,
-          urls: [''], index: 'index/html'
+        use Rack::Static, root: dir,
+          urls: [''], index: 'index.html'
         run proc { }
       end
       Rack::Server.start app: app, port: port
