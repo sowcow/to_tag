@@ -29,4 +29,5 @@ end
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "aruba"
   spec.add_development_dependency "guard-cucumber"
+  spec.add_development_dependency "guard-rspec"
 end
