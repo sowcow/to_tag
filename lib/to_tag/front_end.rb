@@ -9,7 +9,7 @@ module ToTag
       data_file = File.join dir, 'data.json'
 
       FileUtils.cp_r "#{built_dir}/*", dir
-      File.write data_file, JSON.dump data
+      File.write data_file, JSON.dump(data)
     end
 
     def self.built_dir
