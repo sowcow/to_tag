@@ -1,4 +1,5 @@
 require 'rack'
+require 'rack/static'
 
 module ToTag
   class Viewer
