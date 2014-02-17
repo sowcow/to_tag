@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require 'thor'
+class String
+  def strip_heredoc
+    indent = scan(/^[ \t]*(?=\S)/).min.size rescue 0
+    gsub /^[ \t]{#{indent}}/, ''
+  end
+end
+
+
+# todo:
+# - better usage
+
+
+module ToTag
+  class CLI < Thor
+    include Thor::Actions
+    source_root '.' # gem bin dir or so?
+
+    desc 'start NAME', 'start project in dir NAME'
+
+    def start name
+      dir = Pathname name
+      empty_directory dir
+      empty_directory input = dir + 'input'
+      empty_directory output = dir + 'output'
+      create_file dir + 'Rakefile' do TASKS end
+      create_file input + 'example.rb' do EXAMPLE end
+      create_file output + 'run rake'
+    end
+    
+    TASKS = "require 'to-tag/tasks'"
+    EXAMPLE = <<-end.strip_heredoc
+      'orange'.tag :yellow, :red
+      'green'.tag  :yellow, :blue
+      'purple'.tag  :red, :blue
+    end
+  end
+end
+
+
+ARGV.unshift 'start' if ARGV.count == 1
+ToTag::CLI.start ARGV
