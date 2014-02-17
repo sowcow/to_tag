@@ -8,9 +8,14 @@ Gem::Specification.new do |spec|
   spec.version       = ToTag::VERSION
   spec.authors       = ["Alexander K"]
   spec.email         = ["xpyro@ya.ru"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{ dsl for categorizing + web-ui for accessing any information }
+  spec.description   = <<end
+* structure pieces of information with tags using (ruby) dsl and markdown;
+* build interactive static web page (ember) with convenient access to that information;
+* use github to publish it and to collaborate in structuring;
+end
+
+  spec.homepage      = "https://github.com/sowcow/to_tag"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
