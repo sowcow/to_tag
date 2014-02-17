@@ -19,6 +19,7 @@ end
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
+  .reject { |x| x =~ /^front-end/ && x !~ /^front-end\/dist\// }
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
