@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'json'
 
 
 module ToTag
@@ -8,7 +9,7 @@ module ToTag
       dir =  params.fetch :dir
       data_file = File.join dir, 'data.json'
 
-      FileUtils.cp_r "#{built_dir}/*", dir
+      FileUtils.cp_r Dir["#{built_dir}/*"], dir
       File.write data_file, JSON.dump(data)
     end
 
