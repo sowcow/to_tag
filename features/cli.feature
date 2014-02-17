@@ -18,5 +18,7 @@ Feature: CLI
     And a file named "ideas/output/run rake" should exist
 
     When I cd to "ideas"
+    And a file named "output/run rake" should exist
     And I successfully run `rake`
-    And a file named "ideas/output/run rake" should not exist
+    And a file named "output/run rake" should not exist
+    And a directory named "output" should exist

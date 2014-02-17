@@ -29,7 +29,7 @@ module ToTag
       create_file output + 'run rake'
     end
     
-    TASKS = "require 'to-tag/tasks'"
+    TASKS = "require 'to_tag/tasks' # run rake -T"
     EXAMPLE = <<-end.strip_heredoc
       'orange'.tag :yellow, :red
       'green'.tag  :yellow, :blue
