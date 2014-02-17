@@ -18,13 +18,12 @@ end
   spec.homepage      = "https://github.com/sowcow/to_tag"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0")
-  .reject { |x|
-    p x if x =~ %r=dist=
-    return false if x =~ %r=^front-end/dist=
-    x =~ %r=^front-end=
-  }
-            #&& x !~ /^front-end\/dist/ }
+  files = `git ls-files -z`.split("\x0")
+  .reject { |x| x =~ /^front-end/ }
+  files.concat Dir['front-end/dist/**/*'] # ...
+
+  spec.files         = files
+
 
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
