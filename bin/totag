@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require 'thor'
+require 'pathname'
+
 class String
   def strip_heredoc
     indent = scan(/^[ \t]*(?=\S)/).min.size rescue 0
@@ -9,7 +11,7 @@ end
 
 
 # todo:
-# - better usage
+# - better usage description?
 
 
 module ToTag
@@ -17,7 +19,7 @@ module ToTag
     include Thor::Actions
     source_root '.' # gem bin dir or so?
 
-    desc 'start NAME', 'start project in dir NAME'
+    desc 'start NAME', 'start project in NAME dir'
 
     def start name
       dir = Pathname name

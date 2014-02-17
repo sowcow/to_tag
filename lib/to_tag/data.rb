@@ -41,15 +41,27 @@ module ToTag
     def tag what, *tags, &block
       if block
         raise 'wtf?' if tags.any?
-        raise 'implement me!'
+        tags = Block.called &block
       end
       tags = prepare_tags tags
       @known << [what, tags]
     end
+    class Block < BasicObject
+      def self.called &act
+        new(&act).instance_eval { @called }
+      end
+      def initialize &act
+        @called = []
+        instance_eval &act
+      end
+      def method_missing name, *a
+        @called.unshift name
+      end
+    end
 
     def prepare_tags tags
       # case array / string / multiline / block!
-      tags.flatten
+      tags.flatten.map { |x| x.to_s.gsub '_', ' ' }
     end
 
     private

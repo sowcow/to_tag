@@ -22,10 +22,12 @@ describe ToTag::Data do
 
     it 'or takes a file' do
       expect {
-        check "raise 'abc'", [['water', [:h, :o]]]
+        check "raise 'abc'", [['water', [?h, ?o]]]
       }.to raise_error
-      check "'water'.tag :h, :o", [['water', [:h, :o]]]
-      check "'water'.tag [:h, [:o]]", [['water', [:h, :o]]]
+      check "'water'.tag :h, :o", [['water', [?h, ?o]]]
+      check "'water'.tag [:h, [:o]]", [['water', [?h, ?o]]]
+      check "'water'.tag { h o }", [['water', [?h, ?o]]]
+      check "'water'.tag { h_o }", [['water', ['h o']]]
     end
   end
 end

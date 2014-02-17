@@ -8,8 +8,7 @@ end
 desc 'builds output!'
 task build_output: :remove_output do
   data = ToTag::Data.extract dir: 'input'
-  raise data.to_s
-  #ToTag::FrontEnd.build data: data, dir: 'output'
+  ToTag::FrontEnd.build data: data, dir: 'output'
 end
 
 task default: :build_output
